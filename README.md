@@ -1,6 +1,6 @@
 # Jason Mission Management
 
-This is a library to help an agent to manage its missions! A mission a focus of attention and can be accomplished by several goals. 
+This is a library to help an agent to manage its missions! A mission is a focus of attention and can be accomplished by several goals. 
 
 We assume the agent is executing only one mission a time and it can change the current mission by
 
@@ -18,3 +18,9 @@ A mission has the following properties
 this information is stored in beliefs like `mission(id, goal, energy requirement,energy already consumed)` in namespace `mm`.
 
 The code is available in the file `src/agt/mission-management.asl` and illustrated in `src/agt/bob.asl`.
+
+## Missions change
+
+## Actions
+
+## Energy
