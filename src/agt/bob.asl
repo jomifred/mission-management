@@ -3,17 +3,16 @@
 
 
 !my_missions.
-
 +!my_missions
-   <- !mm::create_mission(pa, print_a, 900, [auto_resume]); // is no mission is running, pa will resume, if possible
-      !mm::create_mission(pb, print_b, 100, []);
+   <- !mm::create_mission(pa, print_a, 900, []); 
+      !mm::create_mission(pb, print_b, 100, [drop_when_interrupted]);
       !mm::create_mission(pc, print_c,  50, []);
 
-      !mm::change_mission(pa, suspend_current);  // other option for second argument is drop_current
+      !mm::run_mission(pa);
       .wait(2000);
-      !mm::change_mission(pb, suspend_current);
+      !mm::run_mission(pb);
       .wait(2000);
-      !mm::change_mission(pc, drop_current); // drop mission pb in the case   
+      !mm::run_mission(pc);
    .
 
 // (simulate) energy availability 
@@ -30,7 +29,7 @@
    <- .print("Mission ",Id," state is ",S).
 
 
-// the plans for goal of the missions
+// the plans for the goals of the missions
 
 +!print_a[mission(M)]
    <- !mm::do( M, {.print(a)}, 1 ); // does the action assuming it consumes 1 unit of energy
