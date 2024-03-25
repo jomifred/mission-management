@@ -2,11 +2,9 @@
 
 This is a library to help an agent to manage its missions! A mission is a focus of attention and can be accomplished by several goals. 
 
-We assume the agent is executing only one mission a time and it can change the current mission by
+We assume the agent is executing only one mission a time and the agent can change its current mission. When switching the mission, the current mission can be either suspended or dropped.
 
-- cancelling the current mission and start the new 
-- suspend the current and start the new
-
+If a mission is interrupted/stopped/dropped, another suspended mission resumes. The agent is ideally always in a mission -- no mission is avoided :-)
 
 A mission has the following properties
 
