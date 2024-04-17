@@ -14,7 +14,8 @@
 
 mas mm {
 
-    agent bob
+    agent bob2
+    agent autopilot
 
 
 }
