@@ -10,7 +10,8 @@
 
 +!do(Step,Ag,Rem)
    <- .print("doing ",Step);
-      .send(Ag,achieve,update_rem_plan(Step,5,Rem));
+      UsedEnergy = 5;
+      .send(Ag,achieve,update_rem_plan(Step,UsedEnergy));
       .wait(1000);
    .   
 

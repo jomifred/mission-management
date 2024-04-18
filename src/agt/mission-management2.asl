@@ -58,8 +58,18 @@
       -current_mission(Id);
       !change_state(Id,finished);
       !auto_resume.   
-+!default::update_rem_plan(Doing,Energy,RemPlan)
-   :  current_mission(Mission) & mission_energy(Mission,EE,US)
+
++!default::update_rem_plan(Doing,Energy)
+   :  current_mission(Mission) & 
+      not mission_rem_plan(Mission,_) &
+      mission_plan(Mission,Plan)
+   <- +mission_rem_plan(Mission,Plan);
+      !default::update_rem_plan(Doing,Energy).
+
++!default::update_rem_plan(Doing,Energy)
+   :  current_mission(Mission) & 
+      mission_rem_plan(Mission,[_|RemPlan]) &
+      mission_energy(Mission,EE,US) 
    <- -mission_rem_plan(Mission,_);
       +mission_rem_plan(Mission,RemPlan);
       -mission_energy(Mission,EE,US);
