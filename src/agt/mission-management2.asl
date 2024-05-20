@@ -20,11 +20,13 @@
       mission_state(Id,suspended) &
       mission_rem_plan(Id,Plan) 
    <- +current_mission(Id);
+      !change_state(Id,running);
       .send(autopilot,achieve,run_plan(Id,Plan)).
 @[atomic] +!run_mission(Id) // no current, not desired, start!
    :  not current_mission(_) & 
       mission_plan(Id,Plan) 
    <- +current_mission(Id);
+      !change_state(Id,running);
       .send(autopilot,achieve,run_plan(Id,Plan)).
 @[atomic] +!run_mission(Id) // drop current
    :  current_mission(CMission) & 

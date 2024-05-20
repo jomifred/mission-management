@@ -15,7 +15,6 @@
       // go home
       // land now
 
-
       !mm::run_mission(pa);
       .wait(2000);
       !mm::run_mission(pb);
