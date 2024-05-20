@@ -26,7 +26,7 @@
       -+uav_lastWP(N);
       UsedEnergy = 5;
       if (not mission_loop(MisId)) {
-         .send(Ag,achieve,update_rem_plan(Step,UsedEnergy));
+         .send(Ag,achieve,update_rem_plan(N,UsedEnergy));
       }
       .wait(1000);
       !do(N+1,Rem,Ag);
