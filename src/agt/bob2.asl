@@ -27,8 +27,11 @@
 -energy <- !mm::run_mission(gohome).
 
 +mm::mission_state(pc,finished) 
-   <- .print("Mission c finished!);
-      !mm::run_mission(pd).
+   <- .print("Mission c finished!");
+      !mm::run_mission(pd);
+      .wait(4000);
+      !mm::stop_mission(pd,timeout);
+   .
 
 +mm::mission_state(Id,S) // "callback" when a mission is finished
    <- .print("Mission ",Id," state is ",S).
@@ -36,8 +39,9 @@
 +mm::mission_loop(Id) 
    <- .send(autopilot,tell,mission_loop(Id)).
 
-+mm::mission_plan(Id,Plan) 
+/*+mm::mission_plan(Id,Plan) 
    <- .send(autopilot,tell,mission_plan(Id,Plan)).
 
 +mm::current_mission(Id)
    <- .send(autopilot,tell,update_current_mission(Id)).
+*/
