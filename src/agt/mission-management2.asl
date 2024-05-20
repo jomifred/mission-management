@@ -1,10 +1,13 @@
 
 /* Mission plans */
 
-+!create_mission(Id,ExpEnergy, Args) 
++!create_mission(Id, ExpEnergy, Args) 
    <- +mission_energy(Id,ExpEnergy,0);
       if ( .member(drop_when_interrupted, Args)) {
         +mission_drop_when_interrupted(Id);
+      }
+      if ( .member(loop, Args)) {
+        +mission_loop(Id);
       }
    .
 
