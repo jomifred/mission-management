@@ -1,10 +1,13 @@
 
 +!stop_mission
-   <- .drop_intention(run_plan(_)).
+   <- .drop_intention(do(_,_,_)).
 
 
-+!run_plan(Plan)[source(Ag)]
-   <- !do(0,Plan,Ag).
++!run_plan(CM,Plan)[source(Ag)]
+   <- -+my_agent(Ag);
+      -+current_mission(CM);
+      -+mission_plan(CM,Plan);
+      !do(0,Plan,Ag).
 
 
 // simulates autopilot running Plan
@@ -29,11 +32,11 @@
       !do(N+1,Rem,Ag);
    .   
 
-+update_current_mission(Id)[source(Ag)] 
+/*+update_current_mission(Id)[source(Ag)] 
   <- -current_mission(_);
      +current_mission(Id);
      -update_current_mission(Id)[source(Ag)].
-
+*/
 
 +uav_lastWP(N) 
    : current_mission(CM) 
