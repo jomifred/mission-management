@@ -20,7 +20,7 @@
       mission_state(Id,suspended) &
       mission_step(Id,Step) &
       mission_plan(Id,Plan)
-   <- .delete(0,Step+1,Plan,RemPlan); .print(Plan," Remaining plan is ",RemPlan," (",Step+1,"/",.length(Plan),")");
+   <- .delete(0,Step+1,Plan,RemPlan); .print("Resuming ",Plan,", remaining plan is ",RemPlan," (",Step+1,"/",.length(Plan),")");
       +current_mission(Id);
       !change_state(Id,running);
       .send(autopilot,achieve,run_plan(Id,RemPlan)).
@@ -68,20 +68,10 @@
       !change_state(Id,finished);
       !auto_resume.   
 
-/*+!default::update_rem_plan(Step,Energy)
-   :  current_mission(Mission) & 
-      not mission_rem_plan(Mission,_) &
-      mission_plan(Mission,Plan)
-   <- +mission_rem_plan(Mission,Plan);
-      !default::update_rem_plan(Step,Energy).
-*/
 +!default::update_rem_plan(Step,Energy)
    :  current_mission(Mission) & 
-      //mission_rem_plan(Mission,[_|RemPlan]) &
       mission_energy(Mission,EE,US) 
-   <- //-mission_rem_plan(Mission,_);
-      //+mission_rem_plan(Mission,RemPlan);
-      -mission_step(Mission,_);
+   <- -mission_step(Mission,_);
       +mission_step(Mission,Step);
       -mission_energy(Mission,EE,US);
       +mission_energy(Mission,EE,US+Energy).
