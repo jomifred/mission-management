@@ -9,7 +9,9 @@
       !mm::create_mission(pb, 100, [drop_when_interrupted]); // extinguish
       +mm::mission_plan(pb,[b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b]);
       !mm::create_mission(pc, 50, []);
-      +mm::mission_plan(pc,[c,c,c]); // help other
+      +mm::mission_plan(pc,[c,c]); // help other
+      !mm::create_mission(pd, 50, [loop]);
+      +mm::mission_plan(pd,[d,d]); // help other
       // go home
       // land now
 
@@ -24,6 +26,18 @@
 +fire <- !mm::run_mission(pb).
 -energy <- !mm::run_mission(gohome).
 
++mm::mission_state(pc,finished) 
+   <- .print("Mission c finished!);
+      !mm::run_mission(pd).
+
 +mm::mission_state(Id,S) // "callback" when a mission is finished
    <- .print("Mission ",Id," state is ",S).
 
++mm::mission_loop(Id) 
+   <- .send(autopilot,tell,mission_loop(Id)).
+
++mm::mission_plan(Id,Plan) 
+   <- .send(autopilot,tell,mission_plan(Id,Plan)).
+
++mm::current_mission(Id)
+   <- .send(autopilot,tell,update_current_mission(Id)).
