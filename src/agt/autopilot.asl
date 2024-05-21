@@ -54,9 +54,9 @@
       .wait(1000);
       !consume_energy(E-10).
 
-+update_current_mission(Id)[source(Ag)] 
+/*+update_current_mission(Id)[source(Ag)] 
   <- -current_mission(_);
      +current_mission(Id);
      -update_current_mission(Id)[source(Ag)].
 
-
+*/
